@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ARCH: [x86_64, arm64-v8a, armeabi-v7a]
     steps:
       - uses: actions/checkout@v4
 
@@ -13,9 +16,11 @@ jobs:
         run: |
           chmod +x build.sh
           ./build.sh
+        env:
+          ARCH: ${{ matrix.ARCH }}
 
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: build
+          name: build-${{ matrix.ARCH }}
           path: ~/android/build
