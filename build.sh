@@ -32,6 +32,7 @@ wget https://www.zlib.net/zlib-1.3.1.tar.gz https://pcsclite.apdu.fr/files/pcsc-
 tar -xvf zlib-*.tar.gz
 tar -xvf pcsc-lite-*.tar.bz2
 tar -xvf ccid-*.tar.bz2
+rm *.tar.*
 git clone https://github.com/libusb/libusb.git -b v1.0.26 --depth 1 libusb
 
 pushd zlib-*
