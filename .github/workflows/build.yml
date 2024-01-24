@@ -1,4 +1,5 @@
 # run build.sh, upload ~/build
+name: Build
 on:
   workflow_dispatch:
 
