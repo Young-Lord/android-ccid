@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ARCH: [x86_64, arm64-v8a, armeabi-v7a]
+        ARCH: [x86_64, aarch64, arm]
     steps:
       - uses: actions/checkout@v4
 
