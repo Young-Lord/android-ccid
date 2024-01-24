@@ -1,5 +1,6 @@
 # config
-ARCH=x86_64
+# set default value if undefined
+: ${ARCH=x86_64}
 ANDROID_PLATFORM=24
 MAKEJ=$(nproc)
 
