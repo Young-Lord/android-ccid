@@ -15,7 +15,7 @@ TARGET_HOST=$ARCH-linux-android
 BASEDIR=`echo ~/android`
 mkdir -p $BASEDIR
 cd $BASEDIR
-NDK=`echo /usr/lib/android-ndk/android-ndk-*`
+NDK=`echo /usr/lib/android-ndk`
 TOOLCHAIN_DIR=`echo ~/android-toolchain`
 export PREFIX=$BASEDIR/build/android-$ARCH
 mkdir -p $PREFIX $PREFIX/{include,lib}
