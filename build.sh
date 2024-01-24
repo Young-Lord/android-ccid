@@ -70,5 +70,7 @@ pushd ccid-*
   LIBUSB_CFLAGS="$LIBUSB_CFLAGS" LIBUSB_LIBS="$LIBUSB_LIBS" \
   PCSC_CFLAGS="$PCSC_CFLAGS" PCSC_LIBS="$PCSC_LIBS" \
   --enable-embedded || cat config.log
+make -j$MAKEJ
+make install -k
 popd
 
