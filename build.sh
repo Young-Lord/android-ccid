@@ -1,8 +1,10 @@
-# config
+# modifiable config
 ANDROID_PLATFORM=24
 MAKEJ=$(nproc)
 # set default ARCH if undefined
 : ${ARCH=x86_64}
+
+# necessary check for config
 ARCH_SUFFIX=android
 # set android arch name aarch64 arm mips64el mipsel x86_64 x86
 case $ARCH in
@@ -43,6 +45,7 @@ export CFLAGS=-I$ANDROID_SYSROOT/usr/include
 export LDFLAGS="-llog -lm -lstdc++ -L$ANDROID_SYSROOT/usr/lib"
 COMMON_CONFIGURE_FLAGS="--prefix=$PREFIX --build=$LOCAL_HOST --host=$TARGET_HOST --enable-shared"
 
+# download and extract sources
 wget --no-verbose https://www.zlib.net/zlib-1.3.1.tar.gz https://pcsclite.apdu.fr/files/pcsc-lite-2.0.1.tar.bz2 https://ccid.apdu.fr/files/ccid-1.5.5.tar.bz2
 tar xf zlib-*.tar.gz
 tar xf pcsc-lite-*.tar.bz2
@@ -50,6 +53,7 @@ tar xf ccid-*.tar.bz2
 rm *.tar.*
 git -c advice.detachedHead=false clone https://github.com/libusb/libusb.git -b v1.0.26 --depth 1 libusb > /dev/null
 
+# compile all these stuff in order
 pushd zlib-*
 ./configure --prefix=$PREFIX || cat *.log
 make -j$MAKEJ
@@ -90,4 +94,3 @@ CCID_INCLUDE="$PREFIX/include/ccid"
 mkdir -p "$CCID_INCLUDE"
 (cd `pwd`/src && find . -name '*.h' -print | tar --create --files-from -) | (cd "$CCID_INCLUDE" && tar xfp -)
 popd
-
